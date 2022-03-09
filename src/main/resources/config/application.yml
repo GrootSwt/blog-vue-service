@@ -1,0 +1,10 @@
+server:
+  port: 8889
+spring:
+  application:
+    name: blog
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://39.106.49.0:3306/single_blog?serverTimezone=GMT
+    username: root
+    password: swt620523
