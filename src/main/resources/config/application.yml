@@ -2,7 +2,7 @@ server:
   port: 8889
 spring:
   application:
-    name: blog
+    name: groot-blog-service
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/single_blog?serverTimezone=GMT
