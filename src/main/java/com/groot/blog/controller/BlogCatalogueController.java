@@ -47,4 +47,12 @@ public class BlogCatalogueController {
         List<BlogCatalogueDTO> catalogueTree = blogCatalogueService.getCatalogueTree(blogCatalogue.getCategory());
         return ResultData.success("保存成功！", catalogueTree);
     }
+
+    @DeleteMapping(value = "{category}/deleteByIdArr")
+    public ResultData<List<BlogCatalogueDTO>> deleteByIdArr(@PathVariable String category,
+                                                            @RequestParam String[] idArr) {
+        blogCatalogueService.deleteByIdArr(idArr);
+        List<BlogCatalogueDTO> catalogueTree = blogCatalogueService.getCatalogueTree(category);
+        return ResultData.success("删除成功！", catalogueTree);
+    }
 }

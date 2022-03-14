@@ -10,4 +10,6 @@ public interface BlogCatalogueService {
     List<BlogCatalogueDTO> getCatalogueTree(String category);
 
     void createCatalogue(BlogCatalogue blogCatalogue);
+
+    void deleteByIdArr(String[] idArr);
 }

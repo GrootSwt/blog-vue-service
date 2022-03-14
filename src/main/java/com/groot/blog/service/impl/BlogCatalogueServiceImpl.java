@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -65,6 +66,14 @@ public class BlogCatalogueServiceImpl implements BlogCatalogueService {
             blogCatalogue.setLastUpdateTime(date);
             blogContentMapper.insert(blogContent);
         }
+    }
 
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void deleteByIdArr(String[] idArr) {
+        blogCatalogueMapper.deleteBatchIds(Arrays.asList(idArr));
+        QueryWrapper<BlogContent> queryWrapper = new QueryWrapper<>();
+        queryWrapper.in("file_id", Arrays.asList(idArr));
+        blogContentMapper.delete(queryWrapper);
     }
 }
