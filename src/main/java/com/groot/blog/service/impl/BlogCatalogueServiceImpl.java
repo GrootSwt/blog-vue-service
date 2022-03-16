@@ -70,4 +70,9 @@ public class BlogCatalogueServiceImpl implements BlogCatalogueService {
         queryWrapper.in("file_id", Arrays.asList(idArr));
         blogContentMapper.delete(queryWrapper);
     }
+
+    @Override
+    public List<BlogCatalogue> getNewest() {
+        return blogCatalogueMapper.getNewest();
+    }
 }

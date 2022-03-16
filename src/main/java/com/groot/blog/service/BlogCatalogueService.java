@@ -12,4 +12,6 @@ public interface BlogCatalogueService {
     void createCatalogue(BlogCatalogue blogCatalogue);
 
     void deleteByIdArr(String[] idArr);
+
+    List<BlogCatalogue> getNewest();
 }

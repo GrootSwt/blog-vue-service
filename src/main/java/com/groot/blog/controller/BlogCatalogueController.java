@@ -55,4 +55,11 @@ public class BlogCatalogueController {
         List<BlogCatalogueDTO> catalogueTree = blogCatalogueService.getCatalogueTree(category);
         return ResultData.success("删除成功！", catalogueTree);
     }
+
+    @GetMapping(value = "getNewest")
+    public ResultData<List<BlogCatalogueDTO>> getNewest() {
+        List<BlogCatalogue> blogCatalogues = blogCatalogueService.getNewest();
+        List<BlogCatalogueDTO> blogCatalogueDTOs = blogCatalogueConvertor.toListDTO(blogCatalogues);
+        return ResultData.success("获取最新编辑的文章成功！", blogCatalogueDTOs);
+    }
 }
