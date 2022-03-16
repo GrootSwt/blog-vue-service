@@ -15,7 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 @Service
@@ -54,16 +53,11 @@ public class BlogCatalogueServiceImpl implements BlogCatalogueService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void createCatalogue(BlogCatalogue blogCatalogue) {
-        Date date = new Date();
-        blogCatalogue.setCreateTime(date);
-        blogCatalogue.setLastUpdateTime(date);
         blogCatalogueMapper.insert(blogCatalogue);
         // 目录类型为文章时创建文章内容
         if ("2".equals(blogCatalogue.getType())) {
             BlogContent blogContent = new BlogContent();
             blogContent.setFileId(blogCatalogue.getId());
-            blogContent.setCreateTime(date);
-            blogCatalogue.setLastUpdateTime(date);
             blogContentMapper.insert(blogContent);
         }
     }
