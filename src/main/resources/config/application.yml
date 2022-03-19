@@ -5,9 +5,9 @@ spring:
     name: groot-blog-service
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://39.106.49.0:3306/single_blog?serverTimezone=GMT
+    url: jdbc:mysql://localhost:3306/single_blog?serverTimezone=GMT
     username: root
-    password: swt620523
+    password: 123456
 mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
