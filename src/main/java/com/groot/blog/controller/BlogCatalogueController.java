@@ -40,10 +40,10 @@ public class BlogCatalogueController {
      * @param blogCatalogueDTO 博客目录
      * @return 博客目录树形结构
      */
-    @PostMapping(value = "createCatalogue")
-    public ResultData<List<BlogCatalogueDTO>> createCatalogue(@RequestBody BlogCatalogueDTO blogCatalogueDTO) {
+    @PostMapping(value = "editCatalogue")
+    public ResultData<List<BlogCatalogueDTO>> editCatalogue(@RequestBody BlogCatalogueDTO blogCatalogueDTO) {
         BlogCatalogue blogCatalogue = blogCatalogueConvertor.toEntity(blogCatalogueDTO);
-        blogCatalogueService.createCatalogue(blogCatalogue);
+        blogCatalogueService.editCatalogue(blogCatalogue);
         List<BlogCatalogueDTO> catalogueTree = blogCatalogueService.getCatalogueTree(blogCatalogue.getCategory());
         return ResultData.success("保存成功！", catalogueTree);
     }

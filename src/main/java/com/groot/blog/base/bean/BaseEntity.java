@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
+import org.springframework.util.StringUtils;
 
 import java.util.Date;
 
@@ -23,4 +24,8 @@ public class BaseEntity {
      */
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private Date lastUpdateTime;
+
+    public boolean isNew() {
+        return StringUtils.isEmpty(this.id);
+    }
 }

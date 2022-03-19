@@ -2,6 +2,7 @@ package com.groot.blog.service.impl;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.groot.blog.convertor.BlogCatalogueConvertor;
 import com.groot.blog.dto.BlogCatalogueDTO;
 import com.groot.blog.entity.BlogCatalogue;
@@ -52,13 +53,20 @@ public class BlogCatalogueServiceImpl implements BlogCatalogueService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void createCatalogue(BlogCatalogue blogCatalogue) {
-        blogCatalogueMapper.insert(blogCatalogue);
-        // 目录类型为文章时创建文章内容
-        if ("2".equals(blogCatalogue.getType())) {
-            BlogContent blogContent = new BlogContent();
-            blogContent.setFileId(blogCatalogue.getId());
-            blogContentMapper.insert(blogContent);
+    public void editCatalogue(BlogCatalogue blogCatalogue) {
+        if (blogCatalogue.isNew()) {
+            blogCatalogueMapper.insert(blogCatalogue);
+            // 目录类型为文章时创建文章内容
+            if ("2".equals(blogCatalogue.getType())) {
+                BlogContent blogContent = new BlogContent();
+                blogContent.setFileId(blogCatalogue.getId());
+                blogContentMapper.insert(blogContent);
+            }
+        } else {
+            UpdateWrapper<BlogCatalogue> wrapper = new UpdateWrapper<>();
+            wrapper.set("name", blogCatalogue.getName());
+            wrapper.eq("id",blogCatalogue.getId());
+            blogCatalogueMapper.update(new BlogCatalogue(), wrapper);
         }
     }
 
