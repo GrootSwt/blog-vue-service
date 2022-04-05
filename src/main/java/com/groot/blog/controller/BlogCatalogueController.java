@@ -48,6 +48,13 @@ public class BlogCatalogueController {
         return ResultData.success("保存成功！", catalogueTree);
     }
 
+    /**
+     * 删除目录
+     *
+     * @param category 类别
+     * @param idArr    目录id列表
+     * @return 目录树
+     */
     @DeleteMapping(value = "{category}/deleteByIdArr")
     public ResultData<List<BlogCatalogueDTO>> deleteByIdArr(@PathVariable String category,
                                                             @RequestParam String[] idArr) {
@@ -56,6 +63,12 @@ public class BlogCatalogueController {
         return ResultData.success("删除成功！", catalogueTree);
     }
 
+    /**
+     * 获取最新的五条博客
+     *
+     * @param category 类别
+     * @return 博客列表
+     */
     @GetMapping(value = "getNewest")
     public ResultData<List<BlogCatalogueDTO>> getNewest(@RequestParam(required = false) String category) {
         List<BlogCatalogue> blogCatalogues = blogCatalogueService.getNewest(category);
@@ -63,6 +76,12 @@ public class BlogCatalogueController {
         return ResultData.success("获取最新编辑的文章成功！", blogCatalogueDTOs);
     }
 
+    /**
+     * 根据目录id查询目录
+     *
+     * @param id 目录id
+     * @return 目录
+     */
     @GetMapping(value = "{id}/getById")
     public ResultData<BlogCatalogueDTO> getById(@PathVariable String id) {
         BlogCatalogue blogCatalogue = blogCatalogueService.getById(id);

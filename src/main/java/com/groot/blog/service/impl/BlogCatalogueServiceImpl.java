@@ -75,6 +75,7 @@ public class BlogCatalogueServiceImpl implements BlogCatalogueService {
     public void deleteByIdArr(String[] idArr) {
         blogCatalogueMapper.deleteBatchIds(Arrays.asList(idArr));
         QueryWrapper<BlogContent> queryWrapper = new QueryWrapper<>();
+        // 删除目录同时删除博客内容
         queryWrapper.in("file_id", Arrays.asList(idArr));
         blogContentMapper.delete(queryWrapper);
     }
