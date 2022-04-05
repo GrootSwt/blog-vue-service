@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface BlogCatalogueMapper extends BaseMapper<BlogCatalogue> {
 
-    List<BlogCatalogue> getNewest();
+    List<BlogCatalogue> getNewest(String category);
 }

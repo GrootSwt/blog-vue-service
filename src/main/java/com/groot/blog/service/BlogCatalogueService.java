@@ -13,5 +13,7 @@ public interface BlogCatalogueService {
 
     void deleteByIdArr(String[] idArr);
 
-    List<BlogCatalogue> getNewest();
+    List<BlogCatalogue> getNewest(String category);
+
+    BlogCatalogue getById(String id);
 }

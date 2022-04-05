@@ -10,6 +10,9 @@
         ON t.id = t2.file_id
         <where>
             AND t.type = '2'
+            <if test="category != null">
+                AND t.category = #{category}
+            </if>
         </where>
         ORDER BY t2.last_update_time DESC
         LIMIT 5

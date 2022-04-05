@@ -80,7 +80,12 @@ public class BlogCatalogueServiceImpl implements BlogCatalogueService {
     }
 
     @Override
-    public List<BlogCatalogue> getNewest() {
-        return blogCatalogueMapper.getNewest();
+    public List<BlogCatalogue> getNewest(String category) {
+        return blogCatalogueMapper.getNewest(category);
+    }
+
+    @Override
+    public BlogCatalogue getById(String id) {
+        return blogCatalogueMapper.selectById(id);
     }
 }

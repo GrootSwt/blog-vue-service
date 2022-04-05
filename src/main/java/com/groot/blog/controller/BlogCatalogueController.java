@@ -57,9 +57,17 @@ public class BlogCatalogueController {
     }
 
     @GetMapping(value = "getNewest")
-    public ResultData<List<BlogCatalogueDTO>> getNewest() {
-        List<BlogCatalogue> blogCatalogues = blogCatalogueService.getNewest();
+    public ResultData<List<BlogCatalogueDTO>> getNewest(@RequestParam(required = false) String category) {
+        List<BlogCatalogue> blogCatalogues = blogCatalogueService.getNewest(category);
         List<BlogCatalogueDTO> blogCatalogueDTOs = blogCatalogueConvertor.toListDTO(blogCatalogues);
         return ResultData.success("获取最新编辑的文章成功！", blogCatalogueDTOs);
     }
+
+    @GetMapping(value = "{id}/getById")
+    public ResultData<BlogCatalogueDTO> getById(@PathVariable String id) {
+        BlogCatalogue blogCatalogue = blogCatalogueService.getById(id);
+        BlogCatalogueDTO blogCatalogueDTO = blogCatalogueConvertor.toDTO(blogCatalogue);
+        return ResultData.success("根据id获取目录信息成功！", blogCatalogueDTO);
+    }
+
 }
